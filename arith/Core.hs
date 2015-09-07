@@ -1,26 +1,7 @@
 module Core where
 
 import Control.Applicative((<$>))
-import Syntax(Term(..))
--- | 項が数値かどうか
--- >>> isnumericval (TmSucc (TmSucc TmZero))
--- True
--- >>> isnumericval (TmPred (TmSucc TmZero))
--- False
-isnumericval :: Term -> Bool
-isnumericval TmZero = True
-isnumericval (TmSucc t) = isnumericval t
-isnumericval _ = False
-
--- | 項が値であるかどうか
--- >>> isval TmFalse
--- True
--- >>> isval (TmIf TmTrue TmZero TmZero)
--- False
-isval :: Term -> Bool
-isval TmTrue = True
-isval TmFalse = True
-isval t = isnumericval t
+import Syntax(Term(..), isnumericval)
 
 -- | 単一ステップの評価器
 -- >>> (eval1 (TmIf TmTrue TmFalse TmTrue)) == Just TmFalse

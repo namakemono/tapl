@@ -24,12 +24,20 @@ eval1 t = case t of
     (TmIsZero TmZero)                               -> Just TmTrue
     (TmIsZero (TmSucc nv1)) | isnumericval nv1      -> Just TmFalse
     (TmIsZero t1)                                   -> TmIsZero <$> eval1 t1
-    _                                               -> Nothing
+    _                                               -> Nothing -- No Rule Applies
 
 -- |
 -- 最終的にeval1がどの規則も適用されないポイントに達すると，例外No Rule Applies を投げて，間約列の最後の項を返す
--- >>> (eval (TmIf (TmIf TmTrue TmFalse TmTrue) TmZero TmFalse)) == TmFalse 
--- True
+-- >>> print $ eval TmTrue
+-- true
+-- >>> print $ eval (TmIf (TmIf TmTrue TmFalse TmTrue) TmZero TmFalse)
+-- false
+-- >>> print $ eval (TmIf TmTrue (TmSucc (TmSucc TmZero)) (TmPred TmZero))
+-- 2
+-- >>> print $ eval (TmIf TmFalse (TmSucc TmZero) (TmPred TmZero))
+-- 0
+-- >>> print $ eval (TmIsZero (TmPred (TmSucc TmZero)))
+-- true
 eval :: Term -> Term
 eval t = case eval1 t of
             Just t' -> eval t'

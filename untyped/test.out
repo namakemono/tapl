@@ -1,5 +1,4 @@
-true
-false
-0
-1
-false
+x 
+x
+(lambda x'. x')
+(lambda x'. x' x')

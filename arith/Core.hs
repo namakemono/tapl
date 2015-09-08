@@ -27,7 +27,7 @@ eval1 t = case t of
     _                                               -> Nothing -- No Rule Applies
 
 -- |
--- 最終的にeval1がどの規則も適用されないポイントに達すると，例外No Rule Applies を投げて，間約列の最後の項を返す
+-- 最終的にeval1がどの規則も適用されないポイントに達すると，例外No Rule Applies を投げて，簡約列の最後の項を返す
 -- >>> print $ eval TmTrue
 -- true
 -- >>> print $ eval (TmIf (TmIf TmTrue TmFalse TmTrue) TmZero TmFalse)

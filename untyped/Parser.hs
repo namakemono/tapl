@@ -14,7 +14,6 @@ import Syntax(Term(..))
 -- [1]. Parsing expressions and statements, <https://wiki.haskell.org/Parsing_expressions_and_statements>
 
 
-
 -- Define symbols
 def :: LanguageDef st
 def = emptyDef {
